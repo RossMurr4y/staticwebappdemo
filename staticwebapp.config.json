@@ -37,7 +37,7 @@
                             "clientSecretSettingName": "B2C_CLIENTSECRET"
                         },
                         "openIdConnectConfiguration": {
-                            "wellKnownOpenIdConfiguration": "https://login.microsoftonline.com/d0d3e44b-7c40-4be4-bc93-f63481823596/v2.0/.well-known/openid-configuration"
+                            "wellKnownOpenIdConfiguration": "https://login.microsoftonline.com/b9f0d5b3-1eae-4c33-96a3-78ef8ed66e7f/v2.0/.well-known/openid-configuration"
                         }
                     },
                     "login": {
