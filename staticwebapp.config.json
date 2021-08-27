@@ -1,0 +1,51 @@
+{
+    "routes" : [
+        {
+            "route" : "/login",
+            "redirect" : "/.auth/login/b2c"
+        },
+        {
+            "route" : "/.auth/login/github",
+            "statusCode" : 404
+        },
+        {
+            "route" : "/.auth/login/twitter",
+            "statusCode" : 404
+        },
+        {
+            "route" : "/.auth/login/aad",
+            "statusCode" : 404
+        },
+        {
+            "route" : "/*",
+            "allowedRoles" : [ "authenticated" ]
+        }
+    ],
+    "responseOverrides": {
+        "401": {
+            "statusCode": 302,
+            "redirect": "/login"
+        }
+    },
+    "auth": {
+        "identityProviders": {
+            "customOpenIdConnectProviders": {
+                "b2c": {
+                    "registration": {
+                        "clientIdSettingName": "B2C_CLIENTID",
+                        "clientCredential": {
+                            "clientSecretSettingName": "B2C_CLIENTSECRET"
+                        },
+                        "openIdConnectConfiguration": {
+                            "wellKnownOpenIdConfiguration": "https://login.microsoftonline.com/d0d3e44b-7c40-4be4-bc93-f63481823596/v2.0/.well-known/openid-configuration"
+                        }
+                    },
+                    "login": {
+                        "nameClaimType": "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name",
+                        "scopes": ["openid", "profile"]
+                    }
+                }
+            }
+        }
+    }
+}
