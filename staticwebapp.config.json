@@ -31,7 +31,7 @@
         "identityProviders": {
             "azureActiveDirectory" : {
                 "registration": {
-                    "openIdIssuer": "https://login.microsoftonline.com/b9f0d5b3-1eae-4c33-96a3-78ef8ed66e7f",
+                    "openIdIssuer": "https://gshealthifdb2c.b2clogin.com/b9f0d5b3-1eae-4c33-96a3-78ef8ed66e7f/v2.0/",
                     "clientIdSettingName": "B2C_CLIENTID",
                     "clientSecretSettingName": "B2C_CLIENTSECRET"
                 }
