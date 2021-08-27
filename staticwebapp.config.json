@@ -2,7 +2,7 @@
     "routes" : [
         {
             "route" : "/login",
-            "redirect" : "/.auth/login/aad"
+            "redirect" : "/.auth/login/b2c"
         },
         {
             "route" : "/.auth/login/github",
@@ -29,11 +29,21 @@
     },
     "auth": {
         "identityProviders": {
-            "azureActiveDirectory" : {
-                "registration": {
-                    "openIdIssuer": "https://gshealthifdb2c.b2clogin.com/b9f0d5b3-1eae-4c33-96a3-78ef8ed66e7f/v2.0/",
-                    "clientIdSettingName": "B2C_CLIENTID",
-                    "clientSecretSettingName": "B2C_CLIENTSECRET"
+            "customOpenIdConnectProviders": {
+                "b2c": {
+                    "registration": {
+                        "clientIdSettingName": "B2C_CLIENTID",
+                        "clientCredential": {
+                            "clientSecretSettingName": "B2C_CLIENTSECRET"
+                        },
+                        "openIdConnectConfiguration": {
+                            "wellKnownOpenIdConfiguration": "https://gshealthifdb2c.b2clogin.com/gshealthifdb2c.onmicrosoft.com/B2C_1_login/v2.0/.well-known/openid-configuration"
+                        }
+                    },
+                    "login": {
+                        "nameClaimType": "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name",
+                        "scopes": ["openid", "profile"]
+                    }
                 }
             }
         }
