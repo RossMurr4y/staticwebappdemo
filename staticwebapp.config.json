@@ -41,6 +41,7 @@
                         }
                     },
                     "login": {
+                        "nameClaimType": "email",
                         "scopes": ["openid", "profile"]
                     }
                 }
