@@ -37,11 +37,10 @@
                             "clientSecretSettingName": "B2C_CLIENTSECRET"
                         },
                         "openIdConnectConfiguration": {
-                            "wellKnownOpenIdConfiguration": "https://gosourcesharethething.b2clogin.com/gosourcesharethething.onmicrosoft.com/v2.0/.well-known/openid-configuration?p=B2C_1A_SIGNUP_SIGNIN_OIDC"
+                            "wellKnownOpenIdConfiguration": "https://gosourcesharethething.b2clogin.com/gosourcesharethething.onmicrosoft.com/v2.0/.well-known/openid-configuration?p=B2C_1A_ACCOUNTLINKING"
                         }
                     },
                     "login": {
-                        "nameClaimType": "emails",
                         "scopes": ["openid", "profile"]
                     }
                 }
