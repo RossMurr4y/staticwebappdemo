@@ -1,10 +1,6 @@
 {
     "routes" : [
         {
-            "route" : "/login",
-            "redirect" : "/.auth/login/b2c"
-        },
-        {
             "route" : "/.auth/login/github",
             "statusCode" : 404
         },
@@ -18,34 +14,7 @@
         },
         {
             "route" : "/*",
-            "allowedRoles" : [ "authenticated" ]
+            "allowedRoles" : [ "anonymous" ]
         }
-    ],
-    "responseOverrides": {
-        "401": {
-            "statusCode": 302,
-            "redirect": "/login"
-        }
-    },
-    "auth": {
-        "identityProviders": {
-            "customOpenIdConnectProviders": {
-                "b2c": {
-                    "registration": {
-                        "clientIdSettingName": "B2C_CLIENTID",
-                        "clientCredential": {
-                            "clientSecretSettingName": "B2C_CLIENTSECRET"
-                        },
-                        "openIdConnectConfiguration": {
-                            "wellKnownOpenIdConfiguration": "https://gosourcesharethething.b2clogin.com/gosourcesharethething.onmicrosoft.com/v2.0/.well-known/openid-configuration?p=B2C_1_health_oopt_signin"
-                        }
-                    },
-                    "login": {
-                        "nameClaimType": "emails",
-                        "scopes": ["openid", "profile"]
-                    }
-                }
-            }
-        }
-    }
+    ]
 }
