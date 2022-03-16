@@ -10,15 +10,7 @@
     "routes" : [
         {
              "route" : "/login",
-             "redirect" : "/.auth/login/b2c",
-             "headers" : {
-                "content-security-policy": "frame-ancestors 'self'; upgrade-insecure-requests",
-                "X-Frame-Options": "SAMEORIGIN",
-                "X-Permitted-Cross-Domain-Policies": "none",
-                "Referrer-Policy":"no-referrer",
-                "X-Content-Type-Options": "nosniff",
-                "Permissions-Policy": "autoplay=()"
-             }
+             "redirect" : "/.auth/login/b2c"
         },
         {
             "route" : "/.auth/login/github",
@@ -34,7 +26,7 @@
         },
         {
             "route" : "/*",
-            "allowedRoles" : [ "authenticated" ]
+            "allowedRoles" : [ "anonymous" ]
         }
     ],
      "responseOverrides": {
