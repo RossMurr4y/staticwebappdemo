@@ -1,5 +1,17 @@
 {
+    "globalHeaders": {
+        "content-security-policy": "frame-ancestors 'self'; upgrade-insecure-requests",
+        "X-Frame-Options": "SAMEORIGIN",
+        "X-Permitted-Cross-Domain-Policies": "none",
+        "Referrer-Policy":"no-referrer",
+        "X-Content-Type-Options": "nosniff",
+        "Permissions-Policy": "autoplay=()"
+    },
     "routes" : [
+        {
+             "route" : "/login",
+             "redirect" : "/.auth/login/b2c"
+        },
         {
             "route" : "/.auth/login/github",
             "statusCode" : 404
@@ -14,15 +26,34 @@
         },
         {
             "route" : "/*",
-            "allowedRoles" : [ "anonymous" ]
+            "allowedRoles" : [ "authenticated" ]
         }
     ],
-    "globalHeaders": {
-        "content-security-policy": "frame-ancestors 'self'; upgrade-insecure-requests",
-        "X-Frame-Options": "SAMEORIGIN",
-        "X-Permitted-Cross-Domain-Policies": "none",
-        "Referrer-Policy":"no-referrer",
-        "X-Content-Type-Options": "nosniff",
-        "Permissions-Policy": "autoplay=()"
-    }
+     "responseOverrides": {
+         "401": {
+             "statusCode": 302,
+             "redirect": "/login"
+         }
+     },
+     "auth": {
+         "identityProviders": {
+             "customOpenIdConnectProviders": {
+                 "b2c": {
+                     "registration": {
+                         "clientIdSettingName": "B2C_CLIENTID",
+                         "clientCredential": {
+                             "clientSecretSettingName": "B2C_CLIENTSECRET"
+                         },
+                         "openIdConnectConfiguration": {
+                             "wellKnownOpenIdConfiguration": "https://gosourcesharethething.b2clogin.com/gosourcesharethething.onmicrosoft.com/v2.0/.well-known/openid-configuration?p=B2C_1_health_oopt_signin"
+                         }
+                     },
+                     "login": {
+                         "nameClaimType": "emails",
+                         "scopes": ["openid", "profile"]
+                     }
+                 }
+             }
+         }
+     }
 }
